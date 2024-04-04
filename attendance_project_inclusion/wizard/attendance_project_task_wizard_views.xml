@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="attendance_project_task_wizard_view_form" model="ir.ui.view">
+            <field name="name">attendance.project.task.wizard.view.form</field>
+            <field name="model">attendance.project.task.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="project_id" required="1" 
+                                invisible="not is_check_in"
+                                options="{'no_create': True, 'no_edit': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="task_id" required="1" 
+                                invisible="not is_check_in"
+                                options="{'no_create': True, 'no_edit': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="description" required="1"/>
+                            <field name="employee_id" invisible="1"/>
+                            <field name="attendance_id" invisible="1"/>
+                            <field name="latitude" invisible="1"/>
+                            <field name="longitude" invisible="1"/>
+                            <field name="is_check_in" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Check-in" name="action_process_check_in_out" type="object" 
+                        icon="fa-sign-in" invisible="not is_check_in" class="btn-success"/>
+                        <button string="Check-out" name="action_process_check_in_out" type="object" 
+                        icon="fa-sign-in" invisible="is_check_in" class="btn-warning"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="attendance_wizard_menu_act" model="ir.actions.act_window">
+            <field name="name">Attendance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="res_model">attendance.project.task.wizard</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
